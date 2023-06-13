@@ -9,3 +9,4 @@ bin
 /src/*/bin
 App_Data
 /qx.venice.module/package
+/DTO

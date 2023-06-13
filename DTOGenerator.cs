@@ -30,7 +30,15 @@ namespace codeGenerate
                 Directory.CreateDirectory(dirPath);
                 var filepath = Path.Combine(dirPath, $"{item.Key}.cs");
                 var leaveAsIs = ReadExsitedProperty(filepath);
-                if (leaveAsIs != null) item.Value.AddRange(leaveAsIs);
+                if (leaveAsIs != null)
+                {
+                    var sameName = item.Value
+                        .Where(c => leaveAsIs.Select(d => d.Identifier.ValueText).Contains(c.Identifier.ValueText))
+                        .ToArray();
+                    foreach (var c in sameName)
+                        item.Value.Remove(c);
+                    item.Value.AddRange(leaveAsIs);
+                }
                 var newClassDefinition = generator.ClassDeclaration(
                   item.Key,
                   typeParameters: null,
@@ -133,5 +141,10 @@ public static class HelpExt
     public static string GetName(this AttributeListSyntax attribute)
     {
         return attribute.GetFirstToken().GetNextToken().ValueText;
+    }
+
+    public static string GetName(this PropertyDeclarationSyntax property)
+    {
+        return property.Identifier.ValueText;
     }
 }
