@@ -1,0 +1,11 @@
+*.suo
+*.user
+*.log
+*.nupkg
+!*.log/
+.vs
+obj
+bin
+/src/*/bin
+App_Data
+/qx.venice.module/package

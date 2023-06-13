@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "codeGenerate": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Code\\test\\ConsoleApp1\\codeGenerate"
+    }
+  }
+}
